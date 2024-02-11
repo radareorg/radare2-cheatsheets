@@ -16,8 +16,8 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\dateseparator}{}
 \renewcommand{\dots}{\ \dotfill{}\ }
-\newcommand{\cmdx}[2]{{\color{MidnightBlue}{\tt #1}}{\color{lightgray}~\dotfill{}~}#2\\}
-\newcommand{\cmd}[1]{{\color{MidnightBlue}{\tt #1}}\\}
+\newcommand{\cmd}[2]{{\color{MidnightBlue}{\tt #1}}{\color{lightgray}~\dotfill{}~}#2\\}
+\newcommand{\ttc}[1]{\color{MidnightBlue}{\tt #1}}
 \setlength{\columnsep}{30pt}
 
 %----------------------------------------------------------------------
@@ -35,109 +35,109 @@
 
 \begin{multicols}{3}
 \subsection*{Basic commands}
-\cmdx{s}{seek to a different address}
-\cmdx{b}{change block size}
-\cmdx{q}{quit}
-\cmdx{pd/px/p8}{print disasm/hexdump/bytes}
-\cmdx{pf}{print formatted}
-\cmdx{f name=addr}{set flag to the given address}
-\cmdx{-j}{enter the Javascript repl}
-\cmdx{?*{\url ~}str}{show commands with the given string}
+\cmd{s}{seek to a different address}
+\cmd{b}{change block size}
+\cmd{q}{quit}
+\cmd{pd/px/p8}{print disasm/hexdump/bytes}
+\cmd{pf}{print formatted}
+\cmd{f name=addr}{set flag to the given address}
+\cmd{-j}{enter the Javascript repl}
+\cmd{?*{\url ~}str}{show commands with the given string}
 
 \subsection*{Command prefixes}
-\cmdx{.}{interpret output}
-\cmdx{:}{execute io command}
-\cmdx{\#}{comment}
-\cmdx{$\char18$}{avoid evaluation of special chars}
-\cmdx{N}{repeat n times, being {\tt N} a number}
+\cmd{.}{interpret output}
+\cmd{:}{execute io command}
+\cmd{\#}{comment}
+\cmd{$\char18$}{avoid evaluation of special chars}
+\cmd{N}{repeat n times, being {\tt N} a number}
 
 \subsection*{Command suffixes}
-\cmdx{j}{json}
-\cmdx{q}{quiet (simplest output)}
-\cmdx{*}{radare2 commands}
-\cmdx{,}{table format}
-\cmdx{?}{help for the command}
+\cmd{j}{json}
+\cmd{q}{quiet (simplest output)}
+\cmd{*}{radare2 commands}
+\cmd{,}{table format}
+\cmd{?}{help for the command}
 
 \subsection*{Command modifiers}
-\cmdx{>}{redirect output to file or {\tt \$internalfile}}
-\cmdx{@}{temporal seek}
-\cmdx{@@}{repeat on every flag}
+\cmd{>}{redirect output to file or {\tt \$internalfile}}
+\cmd{@}{temporal seek}
+\cmd{@@}{repeat on every flag}
 
 \subsection*{Binary information}
-\cmdx{ie}{entrypoint}
-\cmdx{is/ii/iE} {symbols/imports/exports}
+\cmd{ie}{entrypoint}
+\cmd{is/ii/iE} {symbols/imports/exports}
 
 \subsection*{Patching}
-\cmdx{wx}{write hexpairs ({\tt wv} for endian values)}
-\cmdx{wa}{write assembly}
-\cmdx{wo}{write in block} %FIXME??
-\cmdx{wtf}{write to file (use {\tt wtff} for {\tt @@})}
+\cmd{wx}{write hexpairs ({\ttc wv} for endian values)}
+\cmd{wa}{write assembly}
+\cmd{wo}{write in block} %FIXME??
+\cmd{wtf}{write to file (use {\ttc wtff} for {\ttc @@})}
 
 \subsection*{Search} %TODO: review?
-\cmdx{/ lib}{search for string}
-\cmdx{/x 9090}{hexpairs}
-\cmdx{/ad ret}{instructions with {\em ret}}
-\cmdx{/m}{search for known magic headers}
-\cmdx{w lob @@/ lib}{write lob on every lib}
+\cmd{/ lib}{search for string}
+\cmd{/x 9090}{hexpairs}
+\cmd{/ad ret}{instructions with {\em ret}}
+\cmd{/m}{search for known magic headers}
+\cmd{w lob @@/ lib}{write lob on every lib}
 
 \subsection*{Analysis and xrefs}
-\cmdx{af}{analyze function}
-\cmdx{aa}{analyze all program {\small({\tt aaa}, {\tt aaaa}, ...)}}
-\cmdx{afn/afvn}{rename a function/variable}
-\cmdx{afl}{list functions}
-\cmdx{axt}{list xrefs to given address}
+\cmd{af}{analyze function}
+\cmd{aa}{analyze all program ({\ttc aaa}, {\ttc aaaa}, ...)}
+\cmd{afn/afvn}{rename a function/variable}
+\cmd{afl}{list functions}
+\cmd{axt}{list xrefs to given address}
 
 \subsection*{Disassembly}
-\cmdx{pdf/pdr}{disassemble function/recursive}
-\cmdx{pdc}{pseudo-decompilation (see {\tt pdd}/{\tt pdg})}
-\cmdx{pd/pi}{print disassembly/instructions}
-\cmdx{Cd}{define as data}
-\cmdx{CC}{add a comment in code}
+\cmd{pdf/pdr}{disassemble function/recursive}
+\cmd{pdc}{pseudo-decompilation (see {\ttc pdd}/{\ttc pdg})}
+\cmd{pd/pi}{print disassembly/instructions}
+\cmd{Cd}{define as data}
+\cmd{CC}{add a comment in code}
 
 \subsection*{Emulation (ESIL)}
-\cmdx{aeim}{initialize emulation registers + stack}
-\cmdx{ae}{emulate ESIL expression}
-\cmdx{aes}{step into (see {\tt ds}, but also {\tt aesu?})}
-\cmdx{aer}{for register manipulation (see {\tt dr})}
+\cmd{aeim}{initialize emulation registers + stack}
+\cmd{ae}{emulate ESIL expression}
+\cmd{aes}{step into (see {\ttc ds}, but also {\ttc aesu?})}
+\cmd{aer}{for register manipulation (see {\ttc dr})}
 
 \subsection*{Debugging}
-\vspace{-7px}
+\vspace{-8px}
 \subsubsection*{({\tt r2 -d bin})}
-\cmdx{db}{set/manage breakpoints}
-\cmdx{dbt}{backtrace}
-\cmdx{ds/dso}{single step/step over}
-\cmdx{dr}{get/set register values ({\tt drr} for telescoped)}
-\cmdx{doo/ood}{restart process}
+\cmd{db}{set/manage breakpoints}
+\cmd{dbt}{backtrace}
+\cmd{ds/dso}{single step/step over}
+\cmd{dr}{get/set register values ({\ttc drr} for telescoped)}
+\cmd{doo/ood}{restart process}
 
 \subsection*{Visual mode}
 \vspace{-8px}
 \subsubsection*{({\tt V} for visual, {\tt v} for panels, {\tt !} to toggle)}
-\cmdx{pP}{rotate modes ($<$tab$>$ for submodes)}
-\cmdx{s/S}{perform step/step over}
-\cmdx{b}{browse (flags, config, classes, symbols, ...)}
-\cmdx{.}{seek to entrypoint}
-\cmdx{i/A} {insert mode for hexa/write assembly}
-\cmdx{V\_}{hud mode to seek flags while typing}
-\cmdx{Vd1}{visual bit editor}
-\cmdx{n/N}{seek to next/previous {\em scr.nkey} thing}
-\cmdx{x/X}{view xrefs/refs}
-\cmdx{hjkl}{move cur ({\tt HJKL} for faster movement)}
+\cmd{pP}{rotate modes ($<$tab$>$ for submodes)}
+\cmd{s/S}{perform step/step over}
+\cmd{b}{browse (flags, config, classes, symbols, ...)}
+\cmd{.}{seek to entrypoint}
+\cmd{i/A} {insert mode for hexa/write assembly}
+\cmd{V\_}{hud mode to seek flags while typing}
+\cmd{Vd1}{visual bit editor}
+\cmd{n/N}{seek to next/previous {\em scr.nkey} thing}
+\cmd{x/X}{view xrefs/refs}
+\cmd{hjkl}{move cur ({\tt HJKL} for faster movement)}
 
 \subsection*{Graph}
 \vspace{-8px}
 \subsubsection*{({\tt VV} comand, {\tt agfv})}
-\cmdx{agn/age/aggv}{custom handmade graphs}
-\cmdx{t/f/u}{follow true/false branch, undo}
+\cmd{agn/age/aggv}{custom handmade graphs}
+\cmd{t/f/u}{follow true/false branch, undo}
 
 \subsection*{Settings}
 \vspace{-8px}
 \subsubsection*{({\tt e} command)}
-\cmdx{edit}{use {\em cfg.editor} with {\tt {\url ~}/.radare2rc}}
-\cmdx{asm.emu/emu.str}{emulation analysis/show strings} %FIXME??
-\cmdx{asm.bytes}{show/hide bytes in disasm}
-\cmdx{bin.relocs.apply}{apply relocs}
-\cmdx{scr.color=n}{enable colors, where n = 0,1,2,3} %FIXME??
-\cmdx{anal.hasnext}{consider code is sequential}
+\cmd{edit}{use {\em cfg.editor} with {\tt {\url ~}/.radare2rc}}
+\cmd{asm.emu/emu.str}{emulation analysis/show strings} %FIXME??
+\cmd{asm.bytes}{show/hide bytes in disasm}
+\cmd{bin.relocs.apply}{apply relocs}
+\cmd{scr.color=n}{enable colors, where n = 0,1,2,3} %FIXME??
+\cmd{anal.hasnext}{consider code is sequential}
 
 \end{multicols}
 \end{document}
