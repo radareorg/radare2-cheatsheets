@@ -42,7 +42,7 @@
 \cmd{pf}{print formatted}
 \cmd{f name=addr}{set flag to the given address}
 \cmd{-j}{enter the Javascript repl}
-\cmd{?*{\url ~}str}{show commands with the given string}
+\cmd{?*{\url ~}str}{filter commands with the given string}
 
 \subsection*{Command prefixes}
 \cmd{.}{interpret output}
@@ -74,7 +74,7 @@
 \cmd{wtf}{write to file (use {\ttc wtff} for {\ttc @@})}
 
 \subsection*{Search} %TODO: review?
-\cmd{/ lib}{search for string}
+\cmd{/ lib}{find 'lib' string}
 \cmd{/x 9090}{hexpairs}
 \cmd{/ad ret}{instructions with {\em ret}}
 \cmd{/m}{search for known magic headers}
@@ -133,11 +133,12 @@
 \vspace{-8px}
 \subsubsection*{({\tt e} command)}
 \cmd{edit}{use {\em cfg.editor} with {\tt {\url ~}/.radare2rc}}
-\cmd{asm.emu/emu.str}{emulation analysis/show strings} %FIXME??
+\cmd{anal.hasnext}{consider code is sequential}
 \cmd{asm.bytes}{show/hide bytes in disasm}
+\cmd{asm.emu/emu.str}{emulation analysis/show strings} %FIXME??
 \cmd{bin.relocs.apply}{apply relocs}
 \cmd{scr.color=n}{enable colors, where n = 0,1,2,3} %FIXME??
-\cmd{anal.hasnext}{consider code is sequential}
+\cmd{search.in}{define search boundaries}
 
 \end{multicols}
 \end{document}
