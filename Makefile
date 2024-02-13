@@ -4,7 +4,7 @@ DOCUMENT=r2cheatsheet
 all: r2pdf
 
 r2pdf:
-	$(CC) $(DOCUMENT).tex
+	$(CC) --enable-pipes --shell-escape $(DOCUMENT).tex
 
 clean:
 	rm -rf *.vrb *.aux *.log *.nav *.out *.sbn *.toc
