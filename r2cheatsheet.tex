@@ -47,13 +47,13 @@
 \cmd{is/ii/iE} {symbols/imports/exports}
 
 \subsection*{Patching}
-\cmd{wx}{write hexpairs ({\ttc wv} for endian values)}
+\cmd{wx}{write hexpairs (\ttc{wv} for endian values)}
 \cmd{wa}{write assembly}
 \cmd{wo}{write in block} %FIXME??
-\cmd{wtf}{write to file (use {\ttc wtff} for {\ttc @@})}
+\cmd{wtf}{write to file (use \ttc{wtff} for \ttc{@@})}
 
 \subsection*{Search} %TODO: review?
-\cmd{/ lib}{find 'lib' string}
+\cmd{/ lib}{find `lib' string}
 \cmd{/x 9090}{hexpairs}
 \cmd{/ad ret}{instructions with {\em ret}}
 \cmd{/m}{search for known magic headers}
@@ -61,14 +61,14 @@
 
 \subsection*{Analysis and xrefs}
 \cmd{af}{analyze function}
-\cmd{aa}{analyze all program ({\ttc aaa}, {\ttc aaaa}, ...)}
+\cmd{aa}{analyze all program (\ttc{aaa}, \ttc{aaaa}, ...)}
 \cmd{afn/afvn}{rename a function/variable}
 \cmd{afl}{list functions}
 \cmd{axt}{list xrefs to given address}
 
 \subsection*{Disassembly}
 \cmd{pdf/pdr}{disassemble function/recursive}
-\cmd{pdc}{pseudo-decompilation (see {\ttc pdd}/{\ttc pdg})}
+\cmd{pdc}{pseudo-decompilation (see \ttc{pdd}/\ttc{pdg})}
 \cmd{pd/pi}{print disassembly/instructions}
 \cmd{Cd}{define as data}
 \cmd{CC}{add a comment in code}
@@ -76,8 +76,8 @@
 \subsection*{Emulation (ESIL)}
 \cmd{aeim}{initialize emulation registers + stack}
 \cmd{ae}{emulate ESIL expression}
-\cmd{aes}{step into (see {\ttc ds}, but also {\ttc aesu?})}
-\cmd{aer}{for register manipulation (see {\ttc dr})}
+\cmd{aes}{step into (see \ttc{ds}, but also \ttc{aesu?})}
+\cmd{aer}{for register manipulation (see \ttc{dr})}
 
 \subsection*{Debugging}
 \vspace{-8px}
@@ -85,7 +85,7 @@
 \cmd{db}{set/manage breakpoints}
 \cmd{dbt}{backtrace}
 \cmd{ds/dso}{single step/step over}
-\cmd{dr}{get/set register values ({\ttc drr} for telescoped)}
+\cmd{dr}{get/set register values (\ttc{drr} for telescoped)}
 \cmd{doo/ood}{restart process}
 
 \subsection*{Visual mode}
