@@ -1,13 +1,17 @@
 CC=pdflatex
-DOCUMENT=r2cheatsheet
+R2=r2cheatsheet
+R2FRIDA=r2frida_cheatsheet
 
-all: r2pdf
+all: r2pdf r2fridapdf
 
 r2pdf:
-	$(CC) --enable-pipes --shell-escape $(DOCUMENT).tex
+	$(CC) --enable-pipes --shell-escape $(R2).tex
+
+r2fridapdf:
+	$(CC) --enable-pipes --shell-escape $(R2FRIDA).tex
 
 clean:
 	rm -rf *.vrb *.aux *.log *.nav *.out *.sbn *.toc
 
 cleanall: clean
-	rm -rf $(DOCUMENT).pdf
+	rm -rf *.pdf
