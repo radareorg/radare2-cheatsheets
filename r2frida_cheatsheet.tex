@@ -3,12 +3,12 @@
 
 %----------------------------------------------------------------------
 
-\title{r2Frida Cheatsheet}
+\title{r2frida Cheatsheet}
 \begin{document}
 \pagestyle{r2fancy}
 
 \begin{center}
-	\Large{\bf r2Frida Cheatsheet}
+	\Large{\bf r2frida Cheatsheet}
 	\rule{\textwidth}{0.2pt}
 \end{center}
 
@@ -24,69 +24,69 @@ where:
 	\item action = list $\vert$ apps $\vert$ attach $\vert$ spawn $\vert$ launch
 	\item link   = local $\vert$ usb $\vert$ remote host:port
 	\item device = {\tt \textquotesingle \textquotesingle} $\vert$ host:port $\vert$ device-id
-	\item target = pid $\vert$ appname $\vert$ process-name $\vert$ program-in-path $\vert$ abspath
+	\item target = pid $\vert$ app $\vert$ process $\vert$ program $\vert$ abspath
 \end{itemize}
 
 \subsection*{Basic commands}
-\cmd{e}{get and edit r2frida options}
-\cmd{i}{gey arch/bits info from the target side ({\tt i*} to import into r2)}
-\cmd{ih}{parse binary headers of the current module}
-\cmd{ii$[$*$]$}{list imports}
-\cmd{il}{list libraries}
-\cmd{is$[$*$]$ $<$lib$>$}{list local and global symbols of {\em lib}}
-\cmd{isa$[$*$]$ ($<$lib$>$) $<$sym$>$}{show addres of {\em sym}} % XXX: [<lib>] ?
-\cmd{ie}{show entrypoint}
-\cmd{iE$[$*$]$ $<$lib$>$}{same as \ttc{is}, but only for the export global ones}
-\cmd{ic $<$class$>$}{list Objective-C classes or methods of {\em class}}
-\cmd{icn $<$name$>$}{list all native methods for Java classes matching {\em name}}
-\cmd{icw}{list Objective-C classes and identifiers where are implemented}
-\cmd{ip $<$protocol$>$}{list Objective-C protocols or methods of {\em protocol}}
-\cmd{fd$[$*j$]$ $<$addr$>$}{inverse symbol resolution}
+\cmd{:e}{get and edit r2frida options}
+\cmd{:i}{gey arch/bits info from the target side ({\tt i*} to import into r2)}
+\cmd{:ih}{parse binary headers of the current module}
+\cmd{:ii$[$*$]$}{list imports}
+\cmd{:il}{list libraries}
+\cmd{:is$[$*$]$ $<$lib$>$}{list local and global symbols of {\em lib}}
+\cmd{:isa$[$*$]$ ($<$lib$>$) $<$sym$>$}{show addres of {\em sym}} % XXX: [<lib>] ?
+\cmd{:ie}{show entrypoint}
+\cmd{:iE$[$*$]$ $<$lib$>$}{same as \ttc{is}, but only for the export global ones}
+\cmd{:ic $<$class$>$}{list Objective-C classes or methods of {\em class}}
+\cmd{:icn $<$name$>$}{list all native methods for Java classes matching {\em name}}
+\cmd{:icw}{list Objective-C classes and identifiers where are implemented}
+\cmd{:ip $<$protocol$>$}{list Objective-C protocols or methods of {\em protocol}}
+\cmd{:fd$[$*j$]$ $<$addr$>$}{inverse symbol resolution}
 
 \subsection*{Tracing}
-\cmd{dtr $<$addr$>$ $<$regs$>$}{trace the list of registers specified when executing {\em addr}}
-\cmd{dtf $<$addr$>$ $[$fmt$]$}{trace address with format \ttc{\textasciicircum ixz0} (see \ttc{dtf?})}
-\cmd{dt ($<$addr$>$|$<$sym$>$)}{trace list of address or symbols}
-\cmd{dtl$[$-*$]$ $[$msg$]$}{debug trace log console, useful to \ttc{.\textbackslash T*}}
-\cmd{dt.}{trace at current offset}
-\cmd{dm$[$.|j|*$]$}{show memory regions}
-\cmd{dmm$[$.|j|*$]$}{show memory range (group consecutive maps)}
-\cmd{dt-$[$*$]$}{clear all tracing}
+\cmd{:dtr $<$addr$>$ $<$regs$>$}{trace the list of registers specified when executing {\em addr}}
+\cmd{:dtf $<$addr$>$ $[$fmt$]$}{trace address with format \ttc{\textasciicircum ixz0} (see \ttc{dtf?})}
+\cmd{:dt ($<$addr$>$|$<$sym$>$)}{trace addresses or symbols}
+\cmd{:dtl$[$-*$]$ $[$msg$]$}{debug trace log console, useful to \ttc{.\textbackslash T*}}
+\cmd{:dt.}{trace at current offset}
+\cmd{:dm$[$.|j|*$]$}{show memory regions}
+\cmd{:dmm$[$.|j|*$]$}{show memory range (group consecutive maps)}
+\cmd{:dt-$[$*$]$}{clear all tracing}
 
 \subsection*{Debugging}
-\cmd{db ($<$addr$>$|$<$sym$>$)}{list or place breakpoint}
-\cmd{db- ($<$addr$>$|$<$sym$>$|*)}{remove breakpoint(s)}
-\cmd{dc}{continue breakpoins or resume a spawned process}
-\cmd{dk}{send signal}
-\cmd{dkr}{show the crashdump}
-\cmd{d.}{start the chrome tools debugger}
-\cmd{dl $<$path$>$}{{\tt dlopen}}
-\cmd{dr}{show register values}
+\cmd{:db ($<$addr$>$|$<$sym$>$)}{list or place breakpoint}
+\cmd{:db- ($<$addr$>$|$<$sym$>$|*)}{remove breakpoint(s)}
+\cmd{:dc}{continue breakpoins or resume a spawned process}
+\cmd{:dk}{send signal}
+\cmd{:dkr}{show the crashdump}
+\cmd{:d.}{start the chrome tools debugger}
+\cmd{:dl $<$path$>$}{{\tt dlopen}}
+\cmd{:dr}{show register values}
 
 \subsection*{Injecting}
-\cmd{dxc $[$java:|sym|addr$]$ $[$args$]$}{call the target symbol with the given args}
-\cmd{dxo $[$sym$]$ $[$args$]$}{call an Objective-C function with the given args}
-\cmd{di$[$0,1,-1$]$ $[$addr$]$}{replace with another function returning the specified value}
-\cmd{dii $[$addr$]$ $[$num$]$}{replace with another function returning a value with the specified int}
-\cmd{dis $[$addr$]$}{replace with another function returning a previously allocated string}
-\cmd{div}{replace with another function returning null}
-\cmd{dif$[$0,1,-1$]$ $[$addr$]$}{intercept a function and replace the return value}
-\cmd{difi $[$addr$]$ $[$num$]$}{intercept a function and replace the return value with the specified int}
-\cmd{difs}{intercept a function and replace the return value with a previously allocated string}
-\cmd{dir}{revert a trace at the given function} % XXX: dir <fun>?
-\cmd{dd}{list file descriptors}
-\cmd{dl $<$lib$>$}{{\tt dlopen} the given library}
-\cmd{dlf $[$path$]$}{load a framework bundle (only Darwin-like systems)}
-\cmd{dl2 $<$lib$>$ $[$main$]$}{inject the given library using Frida's $\geq$ 8.2 new API}
-\cmd{. $<$script.js$>$}{run script}
-\cmd{eval $<$code.js$>$}{evaluate Javascript code in agent side}
+\cmd{:dxc $[$java:|sym|addr$]$ $[$args$]$}{call the target symbol with the given args}
+\cmd{:dxo $[$sym$]$ $[$args$]$}{call an Objective-C function with the given args}
+\cmd{:di$[$0,1,-1$]$ $[$addr$]$}{replace with another function returning the specified value}
+\cmd{:dii $[$addr$]$ $[$num$]$}{replace with another function returning a value with the specified int}
+\cmd{:dis $[$addr$]$}{replace with another function returning a previously allocated string}
+\cmd{:div}{replace with another function returning null}
+\cmd{:dif$[$0,1,-1$]$ $[$addr$]$}{intercept a function and replace the return value}
+\cmd{:difi $[$addr$]$ $[$num$]$}{intercept a function and replace the return value with the specified int}
+\cmd{:difs}{intercept a function and replace the return value with a previously allocated string}
+\cmd{:dir}{revert a trace at the given function} % XXX: dir <fun>?
+\cmd{:dd}{list file descriptors}
+\cmd{:dl $<$lib$>$}{{\tt dlopen} the given library}
+\cmd{:dlf $[$path$]$}{load a framework bundle (only Darwin-like systems)}
+\cmd{:dl2 $<$lib$>$ $[$main$]$}{inject the given library using Frida's $\geq$ 8.2 new API}
+\cmd{:. $<$script.js$>$}{run script}
+\cmd{:eval $<$code.js$>$}{evaluate Javascript code in agent side}
 
 \subsection*{Searching}
-\cmd{/$[$x$]$$[$j$]$ $<$string|hexpairs$>$}{search hex/str pattern in mem ranges (see \ttc{search.in=?})}
-\cmd{/w$[$j$]$ $<$string$>$}{search wide string}
-\cmd{/v$[$1248$]$$[$j$]$ $<$value$>$}{search for a value (honors \ttc{e cfg.bigendian})}
-\cmd{env $[$k$[$=v$]$$]$}{get/set environment variable}
-\cmd{e$[$?$]$ $[$a$[$=b$]$$]$}{list/get/set config evaluable variables}
+\cmd{:/$[$x$]$$[$j$]$ $<$string|hexpairs$>$}{search hex/str pattern in mem ranges (see \ttc{search.in=?})}
+\cmd{:/w$[$j$]$ $<$string$>$}{search wide string}
+\cmd{:/v$[$1248$]$$[$j$]$ $<$value$>$}{search for a value (honors \ttc{e cfg.bigendian})}
+\cmd{:env $[$k$[$=v$]$$]$}{get/set environment variable}
+\cmd{:e$[$?$]$ $[$a$[$=b$]$$]$}{list/get/set config evaluable variables}
 
 \end{multicols}
 \end{document}
