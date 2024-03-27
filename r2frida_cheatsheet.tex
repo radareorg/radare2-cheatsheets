@@ -12,10 +12,9 @@
 	\rule{\textwidth}{0.2pt}
 \end{center}
 
-
 \begin{multicols}{3}
 \noindent
-r2frida is an IO plugin, commands start with '{\ttc:}'
+r2frida is an IO plugin, commands start with `{\ttc:}'
 \begin{center}
 \ttc{r2 frida://action/link/device//target} %XXX //target or /target?
 \end{center}
@@ -71,14 +70,16 @@ The :dtf command create trace hooks from a simple format-string. See \ttc{:dtf?}
 \cmd{:fd$[$*j$]$ $<$addr$>$}{inverse symbol resolution}
 
 \subsection*{Tracing}
+\begin{flushright}
 \cmd{:dtr $<$addr$>$ $<$regs$>$}{trace given registers at {\em addr}}
-\cmd{:dtf $<$addr$>$ $[$fmt$]$}{trace address with format \ttc{\textasciicircum ixz0} (see \ttc{dtf?})}
+\cmd{:dtf $<$addr$>$ $[$fmt$]$}{trace address with format \ttc{\^{}ixz0} (see \ttc{dtf?})}
 \cmd{:dt ($<$addr$>$|$<$sym$>$)}{trace addresses or symbols}
 \cmd{:dtl$[$-*$]$ $[$msg$]$}{debug trace log, useful to \ttc{.\textbackslash T*}}
 \cmd{:dt.}{trace at current offset}
 \cmd{:dm$[$.|j|*$]$}{show memory regions}
 \cmd{:dmm$[$.|j|*$]$}{show memory range (grouped maps)}
 \cmd{:dt-$[$*$]$}{clear all tracing}
+\end{flushright}
 
 \subsection*{Debugging}
 \cmd{:db ($<$addr$>$|$<$sym$>$)}{list or place breakpoint}
