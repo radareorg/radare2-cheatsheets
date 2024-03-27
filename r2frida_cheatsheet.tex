@@ -53,6 +53,17 @@ The :dtf command create trace hooks from a simple format-string. See \ttc{:dtf?}
 	\item h = hexdump from pointer (H for ptr+length)
 \end{itemize}
 
+\subsection*{Configuration Options}
+\noindent
+Use the `\cmd{e:}' command
+\begin{itemize}
+	\itemsep 0em
+	\item :e patch.code = fix page perms for patching code
+	\item :e search.from/to/align = scan restrictions
+	\item :e hook.backtrace = show backtrace on traces
+	\item :e file.log = store trace logs in a file
+\end{itemize}
+
 \subsection*{Basic Commands}
 \cmd{:e}{get and edit r2frida options}
 \cmd{:i}{get arch/bits from target ({\tt .i*} to load into r2)}
