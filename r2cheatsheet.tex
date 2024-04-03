@@ -49,15 +49,15 @@
 \subsection*{Patching}
 \cmd{wx}{write hexpairs (\ttc{wv} for endian values)}
 \cmd{wa}{write assembly}
-\cmd{wo}{write in block} %FIXME??
+\cmd{wo}{write operation in current block}
 \cmd{wtf}{write to file (use \ttc{wtff} for \ttc{@@})}
 
-\subsection*{Search} %TODO: review?
-\cmd{/ lib}{find `lib' string}
-\cmd{/x 9090}{hexpairs}
-\cmd{/ad ret}{instructions with {\em ret}}
+\subsection*{Search}
+\cmd{/ str}{find string}
+\cmd{/x hexpairs}{find hexpairs}
+\cmd{/ad inst}{find instructions}
 \cmd{/m}{search for known magic headers}
-\cmd{w lob @@/ lib}{write lob on every lib}
+\cmd{w str0 @@/ str1}{write str0 on every str1}
 
 \subsection*{Analysis and xrefs}
 \cmd{af}{analyze function}
@@ -91,7 +91,7 @@
 \subsection*{Visual mode}
 \vspace{-8px}
 \subsubsection*{({\tt V} for visual, {\tt v} for panels, {\tt !} to toggle)}
-\cmd{pP}{rotate modes ($<$tab$>$ for submodes)}
+\cmd{pP}{rotate modes ({\scriptsize$<$}tab{\scriptsize$>$} for submodes)}
 \cmd{s/S}{perform step/step over}
 \cmd{b}{browse (flags, config, classes, symbols, ...)}
 \cmd{.}{seek to entrypoint}
