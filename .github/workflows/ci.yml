@@ -7,8 +7,8 @@ on:
   pull_request:
 
 jobs:
-  build-r2-pdf:
-    name: build-r2-pdf
+  build-radare2-pdf:
+    name: build-radare2-pdf
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
