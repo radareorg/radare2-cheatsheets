@@ -1,6 +1,6 @@
 \documentclass[10pt]{article}
 \usepackage{r2style}
-
+\usepackage{enumitem}
 %----------------------------------------------------------------------
 
 \title{r2frida Cheatsheet}
@@ -13,14 +13,14 @@
 \end{center}
 
 \begin{multicols}{3}
+\subsection*{Launching}
 \noindent
 r2frida is an IO plugin, commands start with `{\ttc:}'
 \begin{center}
-\ttc{r2 frida://action/link/device//target}
+\ttc{r2 frida://action/link/device/target}
 \end{center}
 where:
-\begin{itemize}
-	\itemsep 0em % Set the space between items
+\begin{itemize}[itemsep=0pt,topsep=5pt]
 	\itemcmd{action}{list $\vert$ apps $\vert$ attach $\vert$ spawn $\vert$ launch}
 	\itemcmd{link}{local $\vert$ usb $\vert$ remote}
 	\itemcmd{device}{{\tt \textquotesingle \textquotesingle} $\vert$ host:port $\vert$ device-id}
@@ -30,8 +30,7 @@ where:
 \subsection*{Target Addresses}
 \noindent
 Commands accepting an {\tt[addr]} follow this pattern:
-\begin{itemize}
-	\itemsep 0em % Set the space between items
+\begin{itemize}[itemsep=0pt,topsep=5pt]
 	\itemcmd{0xabcd}{absolute address in hexadecimal}
 	\itemcmd{symname}{symbol name from module exports}
 	\itemcmd{objc:class}{Objective C}
@@ -41,8 +40,7 @@ Commands accepting an {\tt[addr]} follow this pattern:
 \subsection*{Trace Format}
 \noindent
 The \ttc{:dtf} command create trace hooks from a simple format-string. See \ttc{:dtf?}
-\begin{itemize}
-	\itemsep 0em % Set the space between items
+\begin{itemize}[itemsep=0pt,topsep=5pt]
 	\itemcmd{\^{}}{trace onEnter instead of onExit}
 	\itemcmd{\%{}}{also trace the return value (onLeave)}
 	\itemcmd{+}{show backtrace when trace is hit}
@@ -52,6 +50,7 @@ The \ttc{:dtf} command create trace hooks from a simple format-string. See \ttc{
 	\itemcmd{x}{hexadecimal value (i=decimal)}
 	\itemcmd{h}{hexdump from pointer (H for ptr+length)}
 \end{itemize}
+\columnbreak
 
 \subsection*{Configuration}
 \cmd{:e}{get and edit r2frida options}
@@ -64,66 +63,69 @@ The \ttc{:dtf} command create trace hooks from a simple format-string. See \ttc{
 \cmd{:e want.swift}{enable experimental swift support}
 
 \subsection*{Basic Commands}
-\cmd{:i}{get arch/bits from target ({\tt .i*} to load into r2)}
+\cmd{:i}{get arch/bits from target (\ttc{.i*} to load into r2)}
 \cmd{:ih}{parse binary headers of the current module}
-\cmd{:ii$[$*$]$}{list imports}
+\cmd{:ii[*]}{list imports}
 \cmd{:il}{list libraries}
-\cmd{:is$[$*$]$ $<$lib$>$}{list local and global symbols of {\em lib}}
-\cmd{:isa$[$*$]$ ($<$lib$>$) $<$sym$>$}{show address of {\em sym}} % XXX: [<lib>] ?
+\cmd{:is[*] lib}{list local and global symbols of {\em lib}}
+\cmd{:isa[*] [lib] sym}{show address of {\em sym}}
 \cmd{:ie}{show entrypoint}
-\cmd{:iE$[$*$]$ $<$lib$>$}{same as \ttc{is}, for exported globals}
-\cmd{:ic $<$class$>$}{list Objective-C classes or methods}
-\cmd{:icn $<$name$>$}{list native methods from Java classes}
+\cmd{:iE[*] lib}{same as \ttc{is}, for exported globals}
+\cmd{:ic class}{list Objective-C classes or methods}
+\cmd{:icn name}{list native methods from Java classes}
 \cmd{:icw}{locate ObjC classes implementations (where)}
-\cmd{:ip $<$protocol$>$}{list ObjC protocols/methods}
-\cmd{:fd$[$*j$]$ $<$addr$>$}{inverse symbol resolution}
+\cmd{:ip protocol}{list ObjC protocols/methods}
+\cmd{:fd[*j] addr}{inverse symbol resolution}
 
 \subsection*{Tracing}
 \begin{flushright}
-\cmd{:dtr $<$addr$>$ $<$regs$>$}{trace given registers at {\em addr}}
-\cmd{:dtf $<$addr$>$ $[$fmt$]$}{trace address with format \ttc{\^{}ixz0} (see \ttc{dtf?})}
-\cmd{:dt ($<$addr$>$|$<$sym$>$)}{trace addresses or symbols}
-\cmd{:dtl$[$-*$]$ $[$msg$]$}{debug trace log, useful to \ttc{.\textbackslash T*}}
+\cmd{:dtr addr regs}{trace given registers at {\em addr}}
+\cmd{:dtf addr [fmt]}{trace address with format \ttc{\^{}ixz0} (see \ttc{dtf?})}
+\cmd{:dt (addr|sym)}{trace addresses or symbols}
+\cmd{:dtl[-*] [msg]}{debug trace log, useful to \ttc{.\textbackslash T*}}
 \cmd{:dt.}{trace at current offset}
-\cmd{:dm$[$.|j|*$]$}{show memory regions}
-\cmd{:dmm$[$.|j|*$]$}{show memory range (grouped maps)}
-\cmd{:dt-$[$*$]$}{clear all tracing}
+\cmd{:dm[.|j|*]}{show memory regions}
+\cmd{:dmm[.|j|*]}{show memory range (grouped maps)}
+\cmd{:dt-[*]}{clear all tracing}
 \end{flushright}
+\columnbreak
 
 \subsection*{Debugging}
-\cmd{:db ($<$addr$>$|$<$sym$>$)}{list or place breakpoint}
-\cmd{:db- ($<$addr$>$|$<$sym$>$|*)}{remove breakpoint(s)}
+\cmd{:db (addr|sym)}{list or place breakpoint}
+\cmd{:db- (addr|sym|*)}{remove breakpoint(s)}
 \cmd{:dc}{continue after breakpoint or resume execution}
 \cmd{:dk}{send signal}
 \cmd{:dkr}{show the crashdump}
 \cmd{:d.}{start the chrome tools debugger}
-\cmd{:dl $<$path$>$}{{\tt dlopen}}
+\cmd{:dl path}{{\tt dlopen}}
 \cmd{:dr}{show register values}
 
 \subsection*{Injecting}
-\cmd{:dxc $[target]$ $[$args$]$}{call target symbol with args}
-\cmd{:dxo $[$sym$]$ $[$args$]$}{call an ObjC function with args}
-\cmd{:di$[$0,1,-1$]$ $[$addr$]$}{replace function to return value}
-\cmd{:dii $[$addr$]$ $[$num$]$}{replace function to return num}
-\cmd{:dis $[$addr$]$}{replace to return a string}
+\begin{flushright}
+\cmd{:dxc [target] [args]}{call target symbol with args}
+\cmd{:dxo [sym] [args]}{call an ObjC function with args}
+\cmd{:di[0,1,-1] [addr]}{replace function to return value}
+\cmd{:dii [addr] [num]}{replace function to return num}
+\cmd{:dis [addr]}{replace to return a string}
 \cmd{:div}{replace with another function returning null}
-\cmd{:dif$[$0,1,-1$]$ $[$addr$]$}{replace the return value}
-\cmd{:difi $[$addr$]$ $[$num$]$}{replace return number}
+\cmd{:dif[0,1,-1] [addr]}{replace the return value}
+\cmd{:difi [addr] [num]}{replace return number}
 \cmd{:difs}{replace return with given string}
 \cmd{:dir}{revert a trace at the given function} % XXX: dir <fun>?
 \cmd{:dd}{list file descriptors}
-\cmd{:dl $<$lib$>$}{{\tt dlopen} the given library}
-\cmd{:dlf $[$path$]$}{load a framework (ObjC only)}
-\cmd{:dl2 $<$lib$>$ $[$main$]$}{inject a library}
-\cmd{:. $<$script.js$>$}{run script}
-\cmd{:eval $<$code.js$>$}{evaluate script in the agent}
+\cmd{:dl lib}{{\tt dlopen} the given library}
+\cmd{:dlf [path]}{load a framework (ObjC only)}
+\cmd{:dl2 lib [main]}{inject a library}
+\cmd{:. \hspace{-5pt}script.js}{run script}
+\cmd{:eval code.js}{evaluate script in the agent}
+\end{flushright}
 
 \subsection*{Searching}
-\cmd{:/$[$x$]$$[$j$]$ $<$pattern$>$}{find hex/str in \ttc{search.in=?}}
-\cmd{:/w$[$j$]$ $<$string$>$}{search wide string}
-\cmd{:/v$[$1248$]$$[$j$]$ $<$value$>$}{find \ttc{e cfg.bigendian} value}
-\cmd{:env $[$k$[$=v$]$$]$}{get/set environment variable}
-\cmd{:e$[$?$]$ $[$a$[$=b$]$$]$}{list/get/set config evaluable variables}
+\cmd{:/[x][j] pattern}{find hex/str in \ttc{search.in=?}}
+\cmd{:/w[j] string}{search wide string}
+\cmd{:/v[1248][j] value}{find \ttc{e cfg.bigendian} value}
+\cmd{:env [k[=v]]}{get/set environment variable}
+\cmd{:e[?] \hspace{-8pt}[a[=b]]}{list/get/set config evaluable variables}
 
 \end{multicols}
 \end{document}
