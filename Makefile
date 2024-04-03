@@ -1,6 +1,6 @@
 CC=pdflatex
-R2=r2cheatsheet
-R2FRIDA=r2frida_cheatsheet
+R2=radare2-cheatsheet
+R2FRIDA=r2frida-cheatsheet
 
 all: r2pdf r2fridapdf
 
