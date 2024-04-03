@@ -16,62 +16,57 @@
 \noindent
 r2frida is an IO plugin, commands start with `{\ttc:}'
 \begin{center}
-\ttc{r2 frida://action/link/device//target} %XXX //target or /target?
+\ttc{r2 frida://action/link/device//target}
 \end{center}
 where:
 \begin{itemize}
 	\itemsep 0em % Set the space between items
-	\item action = list $\vert$ apps $\vert$ attach $\vert$ spawn $\vert$ launch
-	\item link   = local $\vert$ usb $\vert$ remote host:port
-	\item device = {\tt \textquotesingle \textquotesingle} $\vert$ host:port $\vert$ device-id
-	\item target = pid $\vert$ app $\vert$ process $\vert$ program $\vert$ abspath
+	\itemcmd{action}{list $\vert$ apps $\vert$ attach $\vert$ spawn $\vert$ launch}
+	\itemcmd{link}{local $\vert$ usb $\vert$ remote}
+	\itemcmd{device}{{\tt \textquotesingle \textquotesingle} $\vert$ host:port $\vert$ device-id}
+	\itemcmd{target}{pid $\vert$ app $\vert$ program $\vert$ abspath}
 \end{itemize}
 
 \subsection*{Target Addresses}
 \noindent
-Commands accepting an [addr] follow this pattern:
+Commands accepting an {\tt[addr]} follow this pattern:
 \begin{itemize}
 	\itemsep 0em % Set the space between items
-	\item 0xabcd = absolute address in hexadecimal
-	\item symname = symbol name from module exports
-	\item objc:class = Objective C
-	\item java:class = Java class + method
+	\itemcmd{0xabcd}{absolute address in hexadecimal}
+	\itemcmd{symname}{symbol name from module exports}
+	\itemcmd{objc:class}{Objective C}
+	\itemcmd{java:class}{Java class + method}
 \end{itemize}
 
 \subsection*{Trace Format}
 \noindent
-The :dtf command create trace hooks from a simple format-string. See \ttc{:dtf?}
+The \ttc{:dtf} command create trace hooks from a simple format-string. See \ttc{:dtf?}
 \begin{itemize}
 	\itemsep 0em % Set the space between items
-	\item \^{} = trace onEnter instead of onExit
-	\item \%{} = also trace the return value (onLeave)
-	\item + = show backtrace when trace is hit
-	\item s = string in place (w=wide, a=ansi)
-	\item S = pointer to string (Z=nullable string)
-	\item O = object reference (valid for java and objc)
-	\item x = hexadecimal value (i=decimal)
-	\item h = hexdump from pointer (H for ptr+length)
+	\itemcmd{\^{}}{trace onEnter instead of onExit}
+	\itemcmd{\%{}}{also trace the return value (onLeave)}
+	\itemcmd{+}{show backtrace when trace is hit}
+	\itemcmd{s}{string in place (w=wide, a=ansi)}
+	\itemcmd{S}{pointer to string (Z=nullable string)}
+	\itemcmd{O}{object reference (valid for java and objc)}
+	\itemcmd{x}{hexadecimal value (i=decimal)}
+	\itemcmd{h}{hexdump from pointer (H for ptr+length)}
 \end{itemize}
 
-\subsection*{Configuration Options}
-\noindent
-Use the `\cmd{e:}' command
-\begin{itemize}
-	\itemsep 0em
-	\item :e patch.code = fix page perms for patching code
-	\item :e search.from/to/align = scan restrictions
-	\item :e hook.backtrace = show backtrace on traces
-	\item :e file.log = store trace logs in a file
-\end{itemize}
+\subsection*{Configuration}
+\cmd{:e}{get and edit r2frida options}
+\cmd{:e patch.code}{fix page perms for patching code}
+\cmd{:e search.from/to/align}{scan restrictions}
+\cmd{:e hook.backtrace}{show backtrace on traces}
+\cmd{:e file.log}{store trace logs in a file}
 
 \subsection*{Basic Commands}
-\cmd{:e}{get and edit r2frida options}
 \cmd{:i}{get arch/bits from target ({\tt .i*} to load into r2)}
 \cmd{:ih}{parse binary headers of the current module}
 \cmd{:ii$[$*$]$}{list imports}
 \cmd{:il}{list libraries}
 \cmd{:is$[$*$]$ $<$lib$>$}{list local and global symbols of {\em lib}}
-\cmd{:isa$[$*$]$ ($<$lib$>$) $<$sym$>$}{show addres of {\em sym}} % XXX: [<lib>] ?
+\cmd{:isa$[$*$]$ ($<$lib$>$) $<$sym$>$}{show address of {\em sym}} % XXX: [<lib>] ?
 \cmd{:ie}{show entrypoint}
 \cmd{:iE$[$*$]$ $<$lib$>$}{same as \ttc{is}, for exported globals}
 \cmd{:ic $<$class$>$}{list Objective-C classes or methods}
