@@ -1,0 +1,73 @@
+\documentclass[10pt]{article}
+\usepackage{r2style}
+
+%----------------------------------------------------------------------
+
+\title{Rax2 Cheatsheet}
+\begin{document}
+\pagestyle{r2fancy}
+
+\begin{center}
+	\Large{\bf Rax2 Cheatsheet}
+	\rule{\textwidth}{0.2pt}
+\end{center}
+
+\begin{multicols}{3}
+\subsection*{Automatic Conversions}
+\cmd{10 > 0xa}{int -> hex}
+\cmd{0xa > 10}{hex -> dec}
+\cmd{-0xa > -10}{signed hexa}
+\cmd{-10 > 0xfffffffffffffff6}{signed->unsigned}
+\cmd{b30 > 11110b}{decimal to bitstring}
+\cmd{t42 > 1120t}{decimal to ternary}
+\cmd{222t > 0x1a}{ternary to hexa}
+\cmd{22dt > 8}{ternary to decimal}
+\cmd{101b > 0x5}{bitstring to hex}
+\cmd{Bx63 > 1100011b}{hex to bitstring}
+\cmd{1010d > 10}{binary to decimal}
+\cmd{3.3f > Fx40551eb8}{float to hex}
+\cmd{Fx40551eb8 > 3.3f}{hex to float}
+\cmd{35o > 0x1d}{octal to hexadecimal}
+\cmd{Ox35 > 065}{hexadecimal to octal}
+\cmd{Bx63 > 1100011b}{hexadecimal to binary}
+\cmd{Tx63 > 10200t}{hexadecimal to ternary}
+
+
+\subsection*{Base Conversions}
+\cmd{-k}{use base for output as the one in input}
+\cmd{-L}{bin to hex}
+\cmd{-o}{treat input as octal string (decoding?)}
+\cmd{-w}{signed word to hexadecimal}
+\cmd{-x}{output in hexpairs}
+\cmd{-e}{swap endian (default is host)}
+\cmd{-d}{output in base10}
+
+\subsection*{Output}
+\cmd{-j}{json friendly}
+\cmd{-r}{r2 commands}
+\cmd{-n}{append newline}
+\cmd{-u}{human units}
+
+\subsection*{Encoding Streams}
+\cmd{-E}{encode base64}
+\cmd{-D}{decode base64}
+\cmd{-F}{identify input source (py/c/js/.)}
+\cmd{-L}{raw bytes to bits}
+\cmd{-s}{hexpairs to raw output}
+\cmd{-S}{raw binary to hexstring}
+\cmd{-s}{hexstring to binary}
+
+\subsection*{Utilities}
+\cmd{-a}{show ascii table}
+\cmd{-X}{hash string}
+\cmd{-i}{convert to C byte array}
+\cmd{-c}{convert to C string}
+\cmd{-k}{ascii art ssh randomart}
+\cmd{-I}{long to IPv4}
+\cmd{-t}{timestring to unix ts}
+
+\subsection*{Examples}
+\cmd{TODO}{TODO}
+
+\end{multicols}
+\end{document}
